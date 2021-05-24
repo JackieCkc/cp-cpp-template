@@ -196,34 +196,34 @@ vector<int> prefixSum(vector<int>& arr) {
 	return pre;
 }
 
-ll modMul(ll  a, ll  b, ll c) {
-    if (a == 0 || b == 0) {
-        return 0;
-    }
-    if (a == 1) {
-        return b;
-    }
-    if (b == 1) {
-        return a;
-    } 
-    ll a2 = modMul(a, b / 2, c);
-    if ((b & 1) == 0) {
-        return (a2 + a2) % c;
-    } else {
-        return ((a % c) + (a2 + a2)) % c;
-    }
+ll modMul(ll  a, ll  b, ll c = 1e9 + 7) {
+	if (a == 0 || b == 0) {
+		return 0;
+	}
+	if (a == 1) {
+		return b;
+	}
+	if (b == 1) {
+		return a;
+	} 
+	ll a2 = modMul(a, b / 2, c);
+	if ((b & 1) == 0) {
+		return (a2 + a2) % c;
+	} else {
+		return ((a % c) + (a2 + a2)) % c;
+	}
 }
 
-template <typename T>
-T modPow(T base, T exp, T modulus) {
-  base %= modulus;
-  T result = 1;
-  while (exp > 0) {
-    if (exp & 1) result = (result * base) % modulus;
-    base = (base * base) % modulus;
-    exp >>= 1;
-  }
-  return result;
+ll modPow(ll b, ll p, int mod = 1e9 + 7) {
+	ll res = 1;
+	while (p) {
+		if (p & 0x1) {
+			res = (res * b)%mod;
+		}
+		b = (b * b)%mod;
+		p >>= 1;
+	}
+	return res;
 }
 
 void solve() {
